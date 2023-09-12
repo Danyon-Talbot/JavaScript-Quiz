@@ -209,6 +209,9 @@ function resetQuiz() {
         <div id="answer-container">
             <!--Answers-->
         </div>
+        <div class="answer-check">
+        </div>
+
     `
 
     var elements = document.getElementsByClassName("answer-check");
