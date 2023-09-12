@@ -1,0 +1,67 @@
+
+
+
+
+header {
+    display: flex;
+    max-height: 100px;
+}
+
+.time-count {
+    position: absolute;
+    top: 2%;
+    right: 2%;
+    margin-right: 25px;
+    justify-content: end;
+    font-family: 'Courier New', Courier, monospace;
+    color: black;
+}
+
+.top-score {
+    font-family: 'Courier New', Courier, monospace;
+    color: darkblue;
+    margin-left: 25px;
+}
+
+
+#question-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 100%;
+    text-align: center;
+}
+
+#answer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-items: center;
+    max-width: 100%;
+}
+
+#start {
+}
+
+.question {
+    color: black;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 30px
+}
+
+.choice {
+    list-style-type: none;
+}
+
+button {
+    background-color: blueviolet;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: start;
+    border-style: solid;
+    border-color: black;
+    margin-bottom: 5px;
+    margin-right: 10px;
+    margin-left: 10px;
+    font-size: 20px;
+}
