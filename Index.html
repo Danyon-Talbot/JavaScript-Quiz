@@ -8,25 +8,32 @@
         <link rel="stylesheet" href="Assets/CSS/style.css" />
     </head>
     <body>
-        <section>
+        <section class="section-1">
         <header>
             <div class="scores">
                 <h2 class="top-score">Top Scores</h2>
             </div>
             <div class="time-count">
-                <h2 id="time">Time: </h2>
+                <h2 id="time">Time: 0</h2>
             </div>
         </header>
        
         </section>
 
-        <section>
-            <div id="answer-container">
-                <h2>HEADER</h2>
-                <button id="start">Start</button>
+        <section class="section-2">
+
+            <div id="question-container">
+                <h2 id="question-text" class="question">HEADER</h2>
+                <button id="start" style="display: block;">Start</button>
             </div>
-            <div>
-                <p class="answer-check"></p>
+            <div id="answer-container">
+                <!-- Answers -->
+            </div>
+
+            <div class="answer-check">
+            </div>
+
+            <div id="results-container">
             </div>
         </section>
         <script src="./Assets/JS/script.js"></script>
