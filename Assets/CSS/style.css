@@ -1,30 +1,84 @@
 
+:root {
+    --fonts: 'Courier New', Courier, monospace;
+}
 
 
 
+
+h1,h2, h3 {
+    font-family: var(--fonts);
+}
+
+h2 {
+    font-size: 35px;
+}
+
+h3 {
+    font-size: 25px;
+    color: gray;
+}
+
+p {
+    font-family: var(--fonts);
+}
+
+/* removes font family on all list elements */
+li {
+    font-family: var(--fonts);
+}
+
+
+ul li {
+    list-style-type: none;
+}
+
+/* sets default styling for buttons */
+button {
+    background-color: blueviolet;
+    color: white;
+    font-family: var(--fonts);
+    text-align: start;
+    border-style: solid;
+    border-color: black;
+    margin-bottom: 5px;
+    margin-right: 10px;
+    margin-left: 10px;
+    font-size: 25px;
+    padding-right: 5px;
+}
+
+/* sets max height of the header to prevent it leaking */
 header {
     display: flex;
     max-height: 100px;
 }
 
-.time-count {
+/* positions the timer in the top right of the screen */
+#time-count {
     position: absolute;
     top: 2%;
     right: 2%;
     margin-right: 25px;
     justify-content: end;
-    font-family: 'Courier New', Courier, monospace;
     color: black;
 }
 
-.top-score {
-    font-family: 'Courier New', Courier, monospace;
+/* removes the background to the Top Scores button */
+#scores button{
+    background: none;
+    border-style: none;
+}
+
+
+/* sets the text size and colour for both Top Score and Time */
+#top-score, #time {
     color: darkblue;
     margin-left: 25px;
 }
 
-
-#question-container {
+/* aligns the questions to the center of the page */
+.questionContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -32,36 +86,95 @@ header {
     text-align: center;
 }
 
-#answer-container {
+/* aligns the answer choices to the start row */
+.answerContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    max-width: 100%;
+    margin-left: 25%;
+}
+
+
+
+/* aligns the answer check */
+.answer-check {
     display: flex;
     flex-direction: column;
     align-items: center;
-    align-items: center;
-    max-width: 100%;
-}
-
-#start {
-}
-
-.question {
-    color: black;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 30px
-}
-
-.choice {
-    list-style-type: none;
-}
-
-button {
-    background-color: blueviolet;
-    color: white;
-    font-family: 'Courier New', Courier, monospace;
-    text-align: start;
-    border-style: solid;
+    max-width: 50%;
+    margin-left: 25%;
+    border-top-style: solid;
     border-color: black;
-    margin-bottom: 5px;
-    margin-right: 10px;
-    margin-left: 10px;
+}
+
+.enter-initials {
     font-size: 20px;
+    font-weight: bold;
+    padding: 5px;
+}
+
+#initials {
+    background-color: lightgrey;
+    border-style: solid;
+    border-color: grey;
+    padding: 5px;
+}
+
+
+
+
+/* aligns the results container to the center of the page */
+.resultsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: normal;
+    text-align: left;
+    margin-left: 0;
+    margin-left: 35%;
+    margin-right: 35%;
+}
+
+.resetButton {
+}
+
+/* sets the space between list elements within the results container */
+.resultsContainer ol {
+    margin-top: 5px;
+    list-style-position: inside;
+    padding-left: 0;
+    background-color: lightgray;
+    text-align: start;
+}
+
+/* sets the style and position of the list elements for the score */
+.resultsContainer ol li {
+    list-style-position: inside;
+    font-size: 20px;
+    max-height: 10%;
+    padding-left: 15px;
+    font-weight: bold;
+}
+
+
+#displayScoreTitle {
+    text-align: center;
+}
+
+#noResults {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* set question font size and colour */
+.questionText {
+    color: black;
+    font-size: 40px
+}
+
+
+button:hover {
+    background-color: darkmagenta;
 }

@@ -8,7 +8,7 @@ var secondsLeft = 30;
 var timeEl = document.querySelector("#time");
 var timerInterval = "";
 var score = 0;
-
+var clearCheckAnswer;
 var questions = [
     {
         question: 'What Primitive Data Type outcome equals "True/False"?',
@@ -50,6 +50,21 @@ function attachStartListener() {
     })
 }
 
+document.addEventListener("DOMContentLoaded", function() {
+    // Wait for the entire document to be loaded before attaching the listener
+
+    var topScoreButton = document.getElementById("top-score");
+    if (topScoreButton) { // Make sure the element exists
+        topScoreButton.addEventListener("click", function() {
+            displayResults();
+
+            if (questionContainer) {
+                questionContainer.style.display = "none";
+            }
+        });
+    } 
+});
+
 
 //Displays the timer when called
 function displayTimer() {
@@ -79,7 +94,7 @@ function displayQuestion() {
         const currentQuestion = questions[questionCount];
 
         var choicesHTML = currentQuestion.choices.map((choice, index) =>
-            `<li class="choice"><button onclick="checkAnswer(${index})">${choice}</button></li>`
+            `<li><button class="choice" onclick="checkAnswer(${index})">${choice}</button></li>`
         ).join('');
 
         document.getElementById("question-text").textContent = currentQuestion.question;
@@ -98,7 +113,7 @@ function displayQuestion() {
     }
 }
 
-//Checks if the selected answer is correct
+//Checks if the selected answer is correct and then calls displayQuestion again.
 function checkAnswer(selected) {
     var correctAnswerIndex = correctAnswer;
     //Reduces timer by 5 seconds on wrong answer
@@ -109,13 +124,28 @@ function checkAnswer(selected) {
         console.log("Timer-update")
     }
 
-    var confirmation = (selected === correctAnswerIndex) ? `<p>Correct!</p>` : `<p>Incorrect!</p>`;
+    var confirmation = (selected === correctAnswerIndex) ? `<h3>Correct!<h3>` : `<h3>Incorrect!</h3>`;
 
     answerConfirm = document.getElementsByClassName("answer-check");
 
     for (let i = 0; i < answerConfirm.length; i++) {
         answerConfirm[i].innerHTML = confirmation;
+        answerConfirm[i].style.display = "flex";
     };
+
+    //Resets the timer for setTimeout after it is called
+    if (clearCheckAnswer) {
+        clearTimeout(clearCheckAnswer);
+    }
+    //Ensures the checkAnswer message is cleared after each check
+    clearCheckAnswer = setTimeout(function() {
+        for (var i=0; i < answerConfirm.length; i++) {
+            answerConfirm[i].innerHTML = "";
+            answerConfirm[i].style.display = "none";
+        }
+    }, 2000)
+
+
     questionCount ++;
     displayQuestion();
 
@@ -127,12 +157,12 @@ function finalScore() {
     clearInterval(timerInterval);
     score = secondsLeft;
 
-    Array.from(answerConfirm).forEach(item => item.innerHTML = "");
+    //Array.from(answerConfirm).forEach(item => item.innerHTML = "");
 
     questionContainer.innerHTML = `
         <h1 class="question">Final Score: ${secondsLeft}</h1>
         <p class="enter-initials">Enter Initials: <input type="text" id="initials" maxlength="3"/></P>
-        <button class="enter-initials" onclick="submitResults()">Submit</button>
+        <button onclick="submitResults()">Submit</button>
     `;
 
     quizContainer.innerHTML = "";
@@ -167,20 +197,24 @@ function submitResults() {
 
 //Displays top scores
 function displayResults() {
-    resultsContainer.style.display = 'block';
+    var hideHeader = document.getElementById("header")
+    resultsContainer.style.display = 'flex';
+    hideHeader.style.display = "none";
 
     var storedResults = JSON.parse(localStorage.getItem("Results"));
     var resultsHTML = "";
     if (storedResults && storedResults.length > 0) {
-        resultsHTML += '<button class="reset-quiz" onclick="resetQuiz()">Home</button>';
-        resultsHTML += '<button class="clear-scores" onclick="clearScores()">Clear Scores</button>';
+        resultsHTML += '<h2 id="displayScoreTitle">TOP SCORES</h2>';
+        resultsHTML += '<button id="reset-quiz" class="resetButton" onclick="resetQuiz()">Home</button>';
+        resultsHTML += '<button id="clear-scores" class="resetButton" onclick="clearScores()">Clear Scores</button>';
         storedResults.forEach(result => {
-            resultsHTML += `<p>Initials: ${result.Initials}, Score: ${result.Score}</p>`;
+            resultsHTML += `<ol><li id="results-list">${result.Initials} - ${result.Score}</li></ol>`;
         });
     } else {
-        resultsHTML += '<button class="reset-quiz" onclick="resetQuiz()">Home</button>';
-        resultsHTML += '<button class="clear-scores" onclick="clearScores()">Clear Scores</button>';
-        resultsHTML += '<p>No Results</p>';
+        resultsHTML += '<h2 id="displayScoreTitle">TOP SCORES</h2>';
+        resultsHTML += '<button id="reset-quiz" onclick="resetQuiz()">Home</button>';
+        resultsHTML += '<button id="clear-scores" onclick="clearScores()">Clear Scores</button>';
+        resultsHTML += '<p id="noResults">No Results</p>';
     }
 
     resultsContainer.innerHTML = resultsHTML;
@@ -195,23 +229,26 @@ function resetQuiz() {
     questionCount = 0;
     secondsLeft = 30;
     correctAnswer = null;
-    timeEl.textContent = "Time: 30";
+    timeEl.textContent = "Time: 0";
+    var showHeader = document.getElementById("header");
 
-    questionContainer.style.display = 'block';  
-    resultsContainer.style.display = 'none';
+    questionContainer.style.display = "flex";  
+    resultsContainer.style.display = "none";
+    showHeader.style.display = "flex";
 
     questionContainer.innerHTML = `
-        <h2 id="question-text" class="question">HEADER</h2>
+        <h1 id="question-text" class="questionText">HEADER</h1>
         <button id="start">Start</button>
     `;
     
     quizContainer.innerHTML = `
-        <div id="answer-container">
             <!--Answers-->
+        <div class="answer-check" style="display: none;">
         </div>
-        <div class="answer-check">
-        </div>
+    `;
 
+    resultsContainer.innerHTML = `
+        <!--Results-->
     `
 
     var elements = document.getElementsByClassName("answer-check");
