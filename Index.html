@@ -9,11 +9,11 @@
     </head>
     <body>
         <section class="section-1">
-        <header>
-            <div class="scores">
-                <h2 class="top-score">Top Scores</h2>
+        <header id="header" style="display: flex;">
+            <div id="scores">
+               <button><h2 id="top-score">Top Scores</h2></button>
             </div>
-            <div class="time-count">
+            <div id="time-count">
                 <h2 id="time">Time: 0</h2>
             </div>
         </header>
@@ -22,18 +22,19 @@
 
         <section class="section-2">
 
-            <div id="question-container">
-                <h2 id="question-text" class="question">HEADER</h2>
+            <div id="question-container" class="questionContainer" style="display: flex;">
+                <h1 id="question-text" class="questionText">HEADER</h1>
                 <button id="start" style="display: block;">Start</button>
             </div>
-            <div id="answer-container">
+            <div id="answer-container" class="answerContainer">
                 <!-- Answers -->
             </div>
 
-            <div class="answer-check">
+            <div class="answer-check" style="display: none;">
             </div>
 
-            <div id="results-container">
+            <div id="results-container" class="resultsContainer" style="display: none;">
+                 <!--Results-->
             </div>
         </section>
         <script src="./Assets/JS/script.js"></script>
