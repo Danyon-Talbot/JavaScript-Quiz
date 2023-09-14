@@ -18,6 +18,6 @@ No installation Required
 
 ## Usage
 
-Website URL:
+Website URL: https://danyon-talbot.github.io/JavaScript-Quiz/
 
 ## Credits
