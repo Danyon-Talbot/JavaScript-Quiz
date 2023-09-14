@@ -77,13 +77,28 @@ header {
     margin-left: 25px;
 }
 
-/* aligns the questions to the center of the page */
-.questionContainer {
+/* aligns the three to the center of the pages and ensures that they share the same styling */
+.questionContainer, #final-score, #quizInfo {
     display: flex;
     flex-direction: column;
     align-items: center;
     max-width: 100%;
     text-align: center;
+}
+
+/* set question font size and colour */
+.questionText {
+    color: black;
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+/* positions and styles the quiz Info */
+#quizInfo p {
+    max-width: 50%;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 30px;
 }
 
 /* aligns the answer choices to the start row */
@@ -109,20 +124,20 @@ header {
     border-color: black;
 }
 
+/* styles the input element */
 .enter-initials {
     font-size: 20px;
     font-weight: bold;
     padding: 5px;
 }
 
+/* styles the scoreboard initials */
 #initials {
     background-color: lightgrey;
     border-style: solid;
     border-color: grey;
     padding: 5px;
 }
-
-
 
 
 /* aligns the results container to the center of the page */
@@ -134,9 +149,6 @@ header {
     margin-left: 0;
     margin-left: 35%;
     margin-right: 35%;
-}
-
-.resetButton {
 }
 
 /* sets the space between list elements within the results container */
@@ -168,11 +180,7 @@ header {
     text-align: center;
 }
 
-/* set question font size and colour */
-.questionText {
-    color: black;
-    font-size: 40px
-}
+
 
 
 button:hover {
